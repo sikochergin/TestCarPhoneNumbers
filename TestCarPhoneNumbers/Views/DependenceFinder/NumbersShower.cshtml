@@ -1,0 +1,41 @@
+﻿@using TestCarPhoneNumbers.Models
+@{
+    ViewData["Title"] = "Список номеров";
+
+    var numbers = ViewData["NumbersToShow"] as List<NumberToShow>;
+    var carNumber = ViewBag.CarNumber;
+    var failReason = ViewBag.FailReason;
+    if (failReason == null){
+        failReason = "К данному номеру машины не привязан ни один телефон";
+    }
+}
+
+@section Scripts {
+    <script src="~/js/DependenceFinder.js"></script>
+}
+
+<div class="form">
+    <h2>Полный Список для номера @carNumber</h2>
+    @if (numbers != null && numbers.Any()){
+        <table class="table">
+            <tbody>
+                @if (numbers != null && numbers.Any()){
+                    foreach(var number in numbers){
+                        <tr>
+                            <td>@number.Number</td>
+                            <td>@number.CreationDate.ToString("dd.MM.yyyy")</td>
+                            <td><b>@(number.IsOwner ? "Является владельцем" : " ")</b></td>
+                            
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    }
+    else{
+        <h4>К данному номеру машины не привязан ни один телефон</h4>
+    }
+    <div>
+        <a href='/DependenceRegister/DependenceAdding'>Связать номер машины и телефон</a>
+    </div>
+</div>

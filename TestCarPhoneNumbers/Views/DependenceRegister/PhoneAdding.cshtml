@@ -1,0 +1,16 @@
+﻿@section Scripts{
+    <script src="~/js/DependenceRegister.js"></script>
+}
+<!DOCTYPE html>
+<div class="form">
+    <div class="form-group">
+        <label for="pnumber">Введите номер телефона:</label>
+        <input name="pnumber" id="pnumber" />
+    </div>
+    <div class="form-group">
+        <button type="button" class="btn btn-primary" onclick="addPhone(document.getElementById('pnumber').value)">Добавить номер</button>
+    </div>
+
+    <a href="/DependenceRegister/GetAllPhones">Показать все номера телефонов</a>
+</div>
+

@@ -1,0 +1,17 @@
+﻿@section Scripts{
+    <script src="~/js/DependenceRegister.js"></script>
+}
+<!DOCTYPE html>
+<div class="form">
+    <div class="form-group">
+        <label for="cnumber">Введите номер машины:</label>
+        <input name="cnumber" id="cnumber" />
+    </div>
+    <div><label for="pnumber">Введите номер в <b>АНГЛИЙСКОМ</b> регистре!</label></div>
+    <div class="form-group">
+        <button type="button" class="btn btn-primary" onclick="addCar(document.getElementById('cnumber').value)">Добавить номер</button>
+    </div>
+
+    <a href="/DependenceRegister/GetAllcars">Показать все номера машин</a>
+</div>
+
