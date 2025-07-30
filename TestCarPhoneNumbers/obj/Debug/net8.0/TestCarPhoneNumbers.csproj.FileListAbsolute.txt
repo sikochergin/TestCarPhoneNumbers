@@ -134,3 +134,4 @@ C:\Users\AMD\Desktop\TestCarPhoneNumbers\TestCarPhoneNumbers\bin\Debug\net8.0\ru
 C:\Users\AMD\Desktop\TestCarPhoneNumbers\TestCarPhoneNumbers\bin\Debug\net8.0\Data.dll
 C:\Users\AMD\Desktop\TestCarPhoneNumbers\TestCarPhoneNumbers\bin\Debug\net8.0\Data.pdb
 C:\Users\AMD\Desktop\TestCarPhoneNumbers\TestCarPhoneNumbers\obj\Debug\net8.0\TestCarP.40BD55AC.Up2Date
+C:\Users\AMD\Desktop\TestCarPhoneNumbers\TestCarPhoneNumbers\obj\Debug\net8.0\TestCarPhoneNumbers.sourcelink.json
