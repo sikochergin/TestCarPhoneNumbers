@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\TestCarPhoneNumbers.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\AMD\\Desktop\\TestCarPhoneNumbers\\TestCarPhoneNumbers\\wwwroot\\css\\Login.css",
+      "PackagePath": "staticwebassets\\css\\Login.css"
+    },
+    {
       "Id": "C:\\Users\\AMD\\Desktop\\TestCarPhoneNumbers\\TestCarPhoneNumbers\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
@@ -13,12 +17,20 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\AMD\\Desktop\\TestCarPhoneNumbers\\TestCarPhoneNumbers\\wwwroot\\js\\Account.js",
+      "PackagePath": "staticwebassets\\js\\Account.js"
+    },
+    {
       "Id": "C:\\Users\\AMD\\Desktop\\TestCarPhoneNumbers\\TestCarPhoneNumbers\\wwwroot\\js\\DependenceFinder.js",
       "PackagePath": "staticwebassets\\js\\DependenceFinder.js"
     },
     {
       "Id": "C:\\Users\\AMD\\Desktop\\TestCarPhoneNumbers\\TestCarPhoneNumbers\\wwwroot\\js\\DependenceRegister.js",
       "PackagePath": "staticwebassets\\js\\DependenceRegister.js"
+    },
+    {
+      "Id": "C:\\Users\\AMD\\Desktop\\TestCarPhoneNumbers\\TestCarPhoneNumbers\\wwwroot\\js\\Login.js",
+      "PackagePath": "staticwebassets\\js\\Login.js"
     },
     {
       "Id": "C:\\Users\\AMD\\Desktop\\TestCarPhoneNumbers\\TestCarPhoneNumbers\\wwwroot\\js\\site.js",

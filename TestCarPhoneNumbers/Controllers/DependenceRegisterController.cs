@@ -2,6 +2,7 @@
 using Data.Models;
 using System;
 using Data;
+using System.Security.Claims;
 
 namespace TestCarPhoneNumbers.Controllers
 {
@@ -32,12 +33,12 @@ namespace TestCarPhoneNumbers.Controllers
             try
             {
                 var phones = context.phones.ToList();
-                bool alreadyExists = phones.Where(x => x.Number == number).Any();
+                bool alreadyExists = phones.Where(x => x.Number == number && x.IsActive).Any();
                 if (alreadyExists)
                 {
                     return Json(new { status = false, message = "Номер уже в базе" });
                 }
-                context.phones.Add(new Phone { Id = Guid.NewGuid(), Number = number, IsActive = true });
+                context.phones.Add(new Phone { Id = Guid.NewGuid(), Number = number, IsActive = true, CreationDateTime = DateTime.UtcNow });
                 await context.SaveChangesAsync();
                 return Json(new { status = true, message = "Номер добавлен" });
             }
@@ -67,7 +68,7 @@ namespace TestCarPhoneNumbers.Controllers
             try
             {
                 var cars = context.cars.ToList();
-                bool alreadyExists = cars.Where(x => x.Number == number).Any();
+                bool alreadyExists = cars.Where(x => x.Number == number && x.IsActive).Any();
                 if (alreadyExists)
                 {
                     return Json(new { status = false, message = "Номер уже в базе" });
@@ -93,6 +94,22 @@ namespace TestCarPhoneNumbers.Controllers
 
         public IActionResult DependenceAdding()
         {
+            // 1. Получаем Id из клаймов
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (userIdClaim == null)
+                return Challenge(); // нет клайма – редирект на логин
+
+            if (!Guid.TryParse(userIdClaim, out var userId))
+                return BadRequest();
+
+            // 2. Достаём пользователя из БД
+            var user = context.users.FirstOrDefault(u => u.Id == userId);
+            if (user == null)
+                return NotFound();
+
+            // 3. Кладём телефон в ViewBag
+            ViewBag.PhoneNumber = user.Phone;
+
             return View();
         }
 
@@ -138,7 +155,7 @@ namespace TestCarPhoneNumbers.Controllers
 
                 if (isOwner)
                 {
-                    foreach (var c in dependences.Where(x => x.CarId == carId))
+                    foreach (var c in dependences.Where(x => x.CarId == carId && x.IsActive))
                     {
                         if (c.IsOwner)
                         {
@@ -151,7 +168,11 @@ namespace TestCarPhoneNumbers.Controllers
                         return Json(new { status = false, message = "Владелец авто уже указан" });
                     }
                 }
-
+                var alrExists = context.dependencies.FirstOrDefault(x => x.CarId == carId && x.PhoneId == phoneId && x.IsActive);
+                if (alrExists != null)
+                {
+                    return Json(new { status = false, message = "Эти номера уже связаны" });
+                }
                 context.dependencies.Add(new Dependence { Id = Guid.NewGuid(), CarId = carId, PhoneId = phoneId, IsActive = true, IsOwner = isOwner, CreationDateTime = DateTime.UtcNow });
                 await context.SaveChangesAsync();
 
@@ -168,6 +189,32 @@ namespace TestCarPhoneNumbers.Controllers
         {
             var dependences = context.dependencies.ToList();
             return Json(dependences);
+        }
+
+        async public Task<IActionResult> DeleteDependence(string phone, string car)
+        {
+            try
+            {
+                var carCon = context.cars.FirstOrDefault(x => x.Number == car && x.IsActive);
+                var phoneCon = context.phones.FirstOrDefault(x => x.Number == phone && x.IsActive);
+
+                if (carCon == null || phoneCon == null)
+                {
+                    return Json(new { status = false, message = "Номер не найден в базе" });
+                }
+                var dep = context.dependencies.FirstOrDefault(x => x.CarId == carCon.Id && x.PhoneId == phoneCon.Id);
+                if (dep == null)
+                {
+                    return Json(new { status = false, message = "Связь не найдена в базе" });
+                }
+                dep.IsActive = false;
+                await context.SaveChangesAsync();
+                return Json(new { status = true, message = "Номер отвязан" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { status = false, message = ex.Message });
+            }
         }
 
     }

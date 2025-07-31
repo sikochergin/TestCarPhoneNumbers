@@ -22,10 +22,9 @@
                 @if (numbers != null && numbers.Any()){
                     foreach(var number in numbers){
                         <tr>
-                            <td>@number.Number</td>
+                            <td>@("+7 (" + number.Number.Substring(1, 3) + ") " + number.Number.Substring(4, 3) + "-" + number.Number.Substring(7, 2) + "-" +number.Number.Substring(9, 2))</td>
                             <td>@number.CreationDate.ToString("dd.MM.yyyy")</td>
                             <td><b>@(number.IsOwner ? "Является владельцем" : " ")</b></td>
-                            
                         </tr>
                     }
                 }

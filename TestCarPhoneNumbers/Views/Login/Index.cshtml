@@ -1,0 +1,44 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@section Scripts {
+    <script src="~/js/Login.js"></script>
+}
+
+<head>
+    <link rel="stylesheet"
+          href="~/css/Login.css"
+          asp-append-version="true" />
+</head>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+
+<h2>Добро пожаловать!</h2>
+<form class="form">
+    <div class="form-group" id="phone">
+        <label>Введите номер телефона:</label>
+        <input name="phone_input" id="phone_input" type="text" autocomplete="tel" placeholder="+7 (___)-___-__-__" maxlength="18" required />
+    </div>
+    <div class="form-group" id="code" hidden >
+        <label>Введте код:</label>
+        <input name="code_input" id="code_input"/>
+    </div>
+    <button class="form-group button" type="button" id="code_in" onclick="PhoneParsValid()">Отправить код</button>
+    <button class="form-group button" type="button" id="login" onclick="VerifyCode()" hidden>Войти</button>
+</form>
+
+<script>
+    $(function () {
+        $('#phone_input').mask(
+            '+7 (000)-000-00-00',
+            {
+                // вместо пустого подчёркивания можно оставить пробел или другой символ
+                placeholder: '+7 (___)-___-__-__',
+                clearIfNotMatch: false,   // не стирать при неполном вводе
+                selectOnFocus: true       // весь ввод при фокусе выделяется
+            }
+        );
+    });
+</script>

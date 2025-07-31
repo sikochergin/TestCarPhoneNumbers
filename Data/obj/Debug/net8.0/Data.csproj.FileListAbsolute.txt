@@ -12,3 +12,4 @@ C:\Users\AMD\Desktop\TestCarPhoneNumbers\Data\obj\Debug\net8.0\refint\Data.dll
 C:\Users\AMD\Desktop\TestCarPhoneNumbers\Data\obj\Debug\net8.0\Data.pdb
 C:\Users\AMD\Desktop\TestCarPhoneNumbers\Data\obj\Debug\net8.0\Data.genruntimeconfig.cache
 C:\Users\AMD\Desktop\TestCarPhoneNumbers\Data\obj\Debug\net8.0\ref\Data.dll
+C:\Users\AMD\Desktop\TestCarPhoneNumbers\Data\obj\Debug\net8.0\Data.sourcelink.json

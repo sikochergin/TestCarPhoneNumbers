@@ -21,6 +21,7 @@ namespace Data
         public DbSet<Phone> phones { get; set; } = null!;
         public DbSet<Car> cars { get; set; } = null!;
         public DbSet<Dependence> dependencies { get; set; } = null!;
+        public DbSet<User> users { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

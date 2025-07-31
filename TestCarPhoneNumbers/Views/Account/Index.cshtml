@@ -1,0 +1,46 @@
+﻿@using TestCarPhoneNumbers.Models
+@{
+    ViewData["Title"] = "Список номеров аккаунта";
+
+    var numbers = ViewData["AccountNumbersToShow"] as List<NumberToShow>;
+    var phoneNumber = ViewBag.PhoneNumber;
+    var failReason = "К данному номеру телефона не привязана ни одна машина";
+}
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@section Scripts {
+    <script src="~/js/Account.js"></script>
+}
+<h1>Ваш аккаунт</h1>
+<h3>Номер телефона: @("+7 (" + phoneNumber.Substring(1, 3) + ") " + phoneNumber.Substring(4, 3) + "-" + phoneNumber.Substring(7, 2) + "-" + phoneNumber.Substring(9, 2))</h3>
+@if (numbers != null && numbers.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <td><b>Номер Машины</b></td>
+                <td><b>Дата добавления</b></td>
+                <td><b>Является владельцем</b></td>
+            </tr>
+        </thead>
+        <tbody>
+            @if (numbers != null && numbers.Any())
+            {
+                foreach (var number in numbers)
+                {
+                    <tr>
+                        <td>@number.Number</td>
+                        <td>@number.CreationDate.ToString("dd.MM.yyyy")</td>
+                        <td>@(number.IsOwner ? "Да" : "Нет")</td>
+                        <td><button type="button" style="color:red" onclick="independ('@number.Number', '@phoneNumber')">Отвязать</button></td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h4>@failReason</h4>
+}

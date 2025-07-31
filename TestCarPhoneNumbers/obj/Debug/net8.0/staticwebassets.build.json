@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "alQvxFsPtX84jyG0hC/2d+PiSJt9BIR5KSAiRuBbEdg=",
+  "Hash": "7KBshIhztt7+D9OEQyQwiVXelD1pmkuAqZkaU9BO2/8=",
   "Source": "TestCarPhoneNumbers",
   "BasePath": "_content/TestCarPhoneNumbers",
   "Mode": "Default",
@@ -55,6 +55,25 @@
       "OriginalItemSpec": "C:\\Users\\AMD\\Desktop\\TestCarPhoneNumbers\\TestCarPhoneNumbers\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\TestCarPhoneNumbers.bundle.scp.css"
     },
     {
+      "Identity": "C:\\Users\\AMD\\Desktop\\TestCarPhoneNumbers\\TestCarPhoneNumbers\\wwwroot\\css\\Login.css",
+      "SourceId": "TestCarPhoneNumbers",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\AMD\\Desktop\\TestCarPhoneNumbers\\TestCarPhoneNumbers\\wwwroot\\",
+      "BasePath": "_content/TestCarPhoneNumbers",
+      "RelativePath": "css/Login.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\Login.css"
+    },
+    {
       "Identity": "C:\\Users\\AMD\\Desktop\\TestCarPhoneNumbers\\TestCarPhoneNumbers\\wwwroot\\css\\site.css",
       "SourceId": "TestCarPhoneNumbers",
       "SourceType": "Discovered",
@@ -93,6 +112,25 @@
       "OriginalItemSpec": "wwwroot\\favicon.ico"
     },
     {
+      "Identity": "C:\\Users\\AMD\\Desktop\\TestCarPhoneNumbers\\TestCarPhoneNumbers\\wwwroot\\js\\Account.js",
+      "SourceId": "TestCarPhoneNumbers",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\AMD\\Desktop\\TestCarPhoneNumbers\\TestCarPhoneNumbers\\wwwroot\\",
+      "BasePath": "_content/TestCarPhoneNumbers",
+      "RelativePath": "js/Account.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\Account.js"
+    },
+    {
       "Identity": "C:\\Users\\AMD\\Desktop\\TestCarPhoneNumbers\\TestCarPhoneNumbers\\wwwroot\\js\\DependenceFinder.js",
       "SourceId": "TestCarPhoneNumbers",
       "SourceType": "Discovered",
@@ -129,6 +167,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\DependenceRegister.js"
+    },
+    {
+      "Identity": "C:\\Users\\AMD\\Desktop\\TestCarPhoneNumbers\\TestCarPhoneNumbers\\wwwroot\\js\\Login.js",
+      "SourceId": "TestCarPhoneNumbers",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\AMD\\Desktop\\TestCarPhoneNumbers\\TestCarPhoneNumbers\\wwwroot\\",
+      "BasePath": "_content/TestCarPhoneNumbers",
+      "RelativePath": "js/Login.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\Login.js"
     },
     {
       "Identity": "C:\\Users\\AMD\\Desktop\\TestCarPhoneNumbers\\TestCarPhoneNumbers\\wwwroot\\js\\site.js",
