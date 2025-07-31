@@ -113,7 +113,6 @@ function allCharsIn(part, full) {
 }
 
 function addDependence() {
-    var phone = document.getElementById('pnumber').value
     var car = document.getElementById('cnumber').value
     var isOwner = document.getElementById('isOwner').checked
 
