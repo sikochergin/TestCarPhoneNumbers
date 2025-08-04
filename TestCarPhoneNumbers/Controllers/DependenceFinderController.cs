@@ -1,5 +1,6 @@
 ﻿using Data;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using TestCarPhoneNumbers.Models;
@@ -17,11 +18,23 @@ namespace TestCarPhoneNumbers.Controllers
 
         public IActionResult Index()
         {
+            var userId = GetUserId();
+            if (userId == Guid.Empty) return Challenge();
+            var user = context.users.FirstOrDefault(u => u.Id == userId);
+            if (user == null) return NotFound();
+            ViewBag.PhoneNumber = user.Phone;
+
             return View();
         }
 
         public IActionResult NumbersShower() 
-        { 
+        {
+            var userId = GetUserId();
+            if (userId == Guid.Empty) return Challenge();
+            var user = context.users.FirstOrDefault(u => u.Id == userId);
+            if (user == null) return NotFound();
+            ViewBag.PhoneNumber = user.Phone;
+
             if (TempData["NumbersToShow"] is string json)
             {
                 var numbers = JsonSerializer.Deserialize<List<NumberToShow>>(json);
@@ -37,6 +50,12 @@ namespace TestCarPhoneNumbers.Controllers
         {
             try
             {
+                var userId = GetUserId();
+                if (userId == Guid.Empty) return Challenge();
+                var user = context.users.FirstOrDefault(u => u.Id == userId);
+                if (user == null) return NotFound();
+                ViewBag.PhoneNumber = user.Phone;
+
                 TempData["CarNumber"] = number;
                 List<NumberToShow> numbers = new List<NumberToShow>();
                 var car = context.cars.FirstOrDefault(x => x.Number == number);
@@ -78,6 +97,17 @@ namespace TestCarPhoneNumbers.Controllers
                 return Json(new { status = false, message = ex.Message }); 
             }
             
+        }
+
+        public Guid GetUserId()
+        {
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            if (userIdClaim == null) return Guid.Empty;
+
+            if (!Guid.TryParse(userIdClaim, out var userId)) return Guid.Empty;
+
+            return userId;
         }
     }
 }

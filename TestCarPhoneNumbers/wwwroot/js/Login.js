@@ -61,6 +61,7 @@ function VerifyCode() {
                     icon: 'success',
                     position: 'top-right',
                 });
+                buttonUsless();
                 setTimeout(function () {
                     window.location.href = '/Account';
                 }, 1500);
@@ -75,4 +76,9 @@ function VerifyCode() {
             }
         }
     });
+}
+
+function buttonUsless() {
+    $('button').attr('readonly', true);
+    $('button').attr('disabled', true);
 }

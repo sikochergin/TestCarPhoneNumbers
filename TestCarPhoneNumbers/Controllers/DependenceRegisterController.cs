@@ -17,6 +17,12 @@ namespace TestCarPhoneNumbers.Controllers
 
         public IActionResult Index()
         {
+            var userId = GetUserId();
+            if (userId == Guid.Empty) return Challenge();
+            var user = context.users.FirstOrDefault(u => u.Id == userId);
+            if (user == null) return NotFound();
+            ViewBag.PhoneNumber = user.Phone;
+
             return View();
         }
 
@@ -24,6 +30,12 @@ namespace TestCarPhoneNumbers.Controllers
 
         public IActionResult PhoneAdding()
         {
+            var userId = GetUserId();
+            if (userId == Guid.Empty) return Challenge();
+            var user = context.users.FirstOrDefault(u => u.Id == userId);
+            if (user == null) return NotFound();
+            ViewBag.PhoneNumber = user.Phone;
+
             return View();
         }
 
@@ -32,6 +44,12 @@ namespace TestCarPhoneNumbers.Controllers
         {
             try
             {
+                var userId = GetUserId();
+                if (userId == Guid.Empty) return Challenge();
+                var user = context.users.FirstOrDefault(u => u.Id == userId);
+                if (user == null) return NotFound();
+                ViewBag.PhoneNumber = user.Phone;
+
                 var phones = context.phones.ToList();
                 bool alreadyExists = phones.Where(x => x.Number == number && x.IsActive).Any();
                 if (alreadyExists)
@@ -51,6 +69,12 @@ namespace TestCarPhoneNumbers.Controllers
 
         public IActionResult GetAllPhones()
         {
+            var userId = GetUserId();
+            if (userId == Guid.Empty) return Challenge();
+            var user = context.users.FirstOrDefault(u => u.Id == userId);
+            if (user == null) return NotFound();
+            ViewBag.PhoneNumber = user.Phone;
+
             var phones = context.phones.ToList(); 
             return Json(phones);
         }
@@ -59,6 +83,12 @@ namespace TestCarPhoneNumbers.Controllers
 
         public IActionResult CarAdding()
         {
+            var userId = GetUserId();
+            if (userId == Guid.Empty) return Challenge();
+            var user = context.users.FirstOrDefault(u => u.Id == userId);
+            if (user == null) return NotFound();
+            ViewBag.PhoneNumber = user.Phone;
+
             return View();
         }
 
@@ -67,6 +97,12 @@ namespace TestCarPhoneNumbers.Controllers
         {
             try
             {
+                var userId = GetUserId();
+                if (userId == Guid.Empty) return Challenge();
+                var user = context.users.FirstOrDefault(u => u.Id == userId);
+                if (user == null) return NotFound();
+                ViewBag.PhoneNumber = user.Phone;
+
                 var cars = context.cars.ToList();
                 bool alreadyExists = cars.Where(x => x.Number == number && x.IsActive).Any();
                 if (alreadyExists)
@@ -86,6 +122,12 @@ namespace TestCarPhoneNumbers.Controllers
 
         public IActionResult GetAllCars()
         {
+            var userId = GetUserId();
+            if (userId == Guid.Empty) return Challenge();
+            var user = context.users.FirstOrDefault(u => u.Id == userId);
+            if (user == null) return NotFound();
+            ViewBag.PhoneNumber = user.Phone;
+
             var cars = context.cars.ToList();
             return Json(cars);
         }
@@ -94,20 +136,10 @@ namespace TestCarPhoneNumbers.Controllers
 
         public IActionResult DependenceAdding()
         {
-            // 1. Получаем Id из клаймов
-            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            if (userIdClaim == null)
-                return Challenge(); // нет клайма – редирект на логин
-
-            if (!Guid.TryParse(userIdClaim, out var userId))
-                return BadRequest();
-
-            // 2. Достаём пользователя из БД
+            var userId = GetUserId();
+            if (userId == Guid.Empty) return Challenge();
             var user = context.users.FirstOrDefault(u => u.Id == userId);
-            if (user == null)
-                return NotFound();
-
-            // 3. Кладём телефон в ViewBag
+            if (user == null) return NotFound();
             ViewBag.PhoneNumber = user.Phone;
 
             return View();
@@ -118,6 +150,12 @@ namespace TestCarPhoneNumbers.Controllers
         {
             try
             {
+                var userId = GetUserId();
+                if (userId == Guid.Empty) return Challenge();
+                var user = context.users.FirstOrDefault(u => u.Id == userId);
+                if (user == null) return NotFound();
+                ViewBag.PhoneNumber = user.Phone;
+
                 var phones = context.phones.ToList();
                 var cars = context.cars.ToList();
                 var dependences = context.dependencies.ToList();
@@ -187,6 +225,12 @@ namespace TestCarPhoneNumbers.Controllers
 
         public IActionResult GetAllDependencies()
         {
+            var userId = GetUserId();
+            if (userId == Guid.Empty) return Challenge();
+            var user = context.users.FirstOrDefault(u => u.Id == userId);
+            if (user == null) return NotFound();
+            ViewBag.PhoneNumber = user.Phone;
+
             var dependences = context.dependencies.ToList();
             return Json(dependences);
         }
@@ -195,6 +239,12 @@ namespace TestCarPhoneNumbers.Controllers
         {
             try
             {
+                var userId = GetUserId();
+                if (userId == Guid.Empty) return Challenge();
+                var user = context.users.FirstOrDefault(u => u.Id == userId);
+                if (user == null) return NotFound();
+                ViewBag.PhoneNumber = user.Phone;
+
                 var carCon = context.cars.FirstOrDefault(x => x.Number == car && x.IsActive);
                 var phoneCon = context.phones.FirstOrDefault(x => x.Number == phone && x.IsActive);
 
@@ -217,5 +267,15 @@ namespace TestCarPhoneNumbers.Controllers
             }
         }
 
+        public Guid GetUserId()
+        {
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            if (userIdClaim == null) return Guid.Empty;
+
+            if (!Guid.TryParse(userIdClaim, out var userId)) return Guid.Empty;
+
+            return userId;
+        }
     }
 }

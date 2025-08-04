@@ -22,7 +22,19 @@ namespace TestCarPhoneNumbers.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            if (userIdClaim == null) return View();
+
+            if (!Guid.TryParse(userIdClaim, out var userId)) return View();
+            if (userId == Guid.Empty)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Account");
+            }
         }
 
         [HttpPost]
@@ -109,12 +121,11 @@ namespace TestCarPhoneNumbers.Controllers
 
         // при желании: выход
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(
                 CookieAuthenticationDefaults.AuthenticationScheme);
-            return RedirectToAction(nameof(Index));
+            return Json(new { status = true, message = "Успешный выход" });
         }
     }
 }

@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\TestCarPhoneNumbers.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\AMD\\Desktop\\TestCarPhoneNumbers\\TestCarPhoneNumbers\\wwwroot\\css\\Account.css",
+      "PackagePath": "staticwebassets\\css\\Account.css"
+    },
+    {
       "Id": "C:\\Users\\AMD\\Desktop\\TestCarPhoneNumbers\\TestCarPhoneNumbers\\wwwroot\\css\\Login.css",
       "PackagePath": "staticwebassets\\css\\Login.css"
     },

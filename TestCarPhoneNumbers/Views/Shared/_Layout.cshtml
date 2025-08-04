@@ -27,6 +27,9 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Index">Аккаунт</a>
                         </li>
+                        <li class="nav-item-right">
+                            <button class="logout-btn" type="button" onclick="SignOut()">Выйти</button>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -56,3 +59,45 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+
+<script>
+    function SignOut() {
+        $.ajax({
+            method: 'post',
+            url: '/Login/Logout',
+            error: function (result) {
+                console.log(result);
+
+                $.toast({
+                    text: 'Ошибка',
+                    showHideTransition: 'slide',
+                    icon: 'error',
+                    position: 'top-right',
+                });
+            },
+            success: function (result) {
+                if (result.status) {
+                    $.toast({
+                        text: "Успешный выход",
+                        showHideTransition: 'slide',
+                        icon: 'success',
+                        position: 'top-right',
+                    });
+                    $('button').attr('readonly', true);
+                    $('button').attr('disabled', true);
+                    setTimeout(function () {
+                        window.location.href = '/Account';
+                    }, 1000);
+                }
+                else {
+                    $.toast({
+                        text: result.message,
+                        showHideTransition: 'slide',
+                        icon: 'error',
+                        position: 'top-right',
+                    });
+                }
+            }
+        });
+    }
+</script>

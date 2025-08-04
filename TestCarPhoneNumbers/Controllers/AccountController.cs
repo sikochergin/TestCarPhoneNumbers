@@ -16,20 +16,10 @@ namespace TestCarPhoneNumbers.Controllers
 
         public IActionResult Index()
         {
-            // 1. Получаем Id из клаймов
-            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            if (userIdClaim == null)
-                return Challenge(); // нет клайма – редирект на логин
-
-            if (!Guid.TryParse(userIdClaim, out var userId))
-                return BadRequest();
-
-            // 2. Достаём пользователя из БД
+            var userId = GetUserId();
+            if (userId == Guid.Empty) return Challenge();
             var user = context.users.FirstOrDefault(u => u.Id == userId);
-            if (user == null)
-                return NotFound();
-
-            // 3. Кладём телефон в ViewBag
+            if (user == null) return NotFound();
             ViewBag.PhoneNumber = user.Phone;
 
             ViewData["AccountNumbersToShow"] = GetUsersNumbers(userId);
@@ -62,6 +52,17 @@ namespace TestCarPhoneNumbers.Controllers
                 numberToShows.Add(nts);
             }
             return numberToShows;
+        }
+
+        public Guid GetUserId()
+        {
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            if (userIdClaim == null) return Guid.Empty;
+
+            if (!Guid.TryParse(userIdClaim, out var userId)) return Guid.Empty;
+
+            return userId;
         }
     }
 }

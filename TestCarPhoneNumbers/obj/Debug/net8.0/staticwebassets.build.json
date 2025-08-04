@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "7KBshIhztt7+D9OEQyQwiVXelD1pmkuAqZkaU9BO2/8=",
+  "Hash": "CxBqc59J0PgPFdodP2QPWcTs3MIER7+eXtG64/FkN34=",
   "Source": "TestCarPhoneNumbers",
   "BasePath": "_content/TestCarPhoneNumbers",
   "Mode": "Default",
@@ -53,6 +53,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\AMD\\Desktop\\TestCarPhoneNumbers\\TestCarPhoneNumbers\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\TestCarPhoneNumbers.bundle.scp.css"
+    },
+    {
+      "Identity": "C:\\Users\\AMD\\Desktop\\TestCarPhoneNumbers\\TestCarPhoneNumbers\\wwwroot\\css\\Account.css",
+      "SourceId": "TestCarPhoneNumbers",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\AMD\\Desktop\\TestCarPhoneNumbers\\TestCarPhoneNumbers\\wwwroot\\",
+      "BasePath": "_content/TestCarPhoneNumbers",
+      "RelativePath": "css/Account.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\Account.css"
     },
     {
       "Identity": "C:\\Users\\AMD\\Desktop\\TestCarPhoneNumbers\\TestCarPhoneNumbers\\wwwroot\\css\\Login.css",

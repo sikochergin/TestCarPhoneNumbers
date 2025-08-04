@@ -12,35 +12,44 @@
 @section Scripts {
     <script src="~/js/Account.js"></script>
 }
-<h1>Ваш аккаунт</h1>
-<h3>Номер телефона: @("+7 (" + phoneNumber.Substring(1, 3) + ") " + phoneNumber.Substring(4, 3) + "-" + phoneNumber.Substring(7, 2) + "-" + phoneNumber.Substring(9, 2))</h3>
-@if (numbers != null && numbers.Any())
-{
-    <table class="table">
-        <thead>
-            <tr>
-                <td><b>Номер Машины</b></td>
-                <td><b>Дата добавления</b></td>
-                <td><b>Является владельцем</b></td>
-            </tr>
-        </thead>
-        <tbody>
-            @if (numbers != null && numbers.Any())
-            {
-                foreach (var number in numbers)
-                {
+<head>
+    <link rel="stylesheet"
+          href="~/css/Account.css"
+          asp-append-version="true" />
+</head>
+<div class="container">
+    <h1>Ваш аккаунт</h1>
+    <h3>Номер телефона: @("+7 (" + phoneNumber.Substring(1, 3) + ") " + phoneNumber.Substring(4, 3) + "-" + phoneNumber.Substring(7, 2) + "-" + phoneNumber.Substring(9, 2))</h3>
+    @if (numbers != null && numbers.Any())
+    {
+        <div class="table-container">
+            <table class="table">
+                <thead>
                     <tr>
-                        <td>@number.Number</td>
-                        <td>@number.CreationDate.ToString("dd.MM.yyyy")</td>
-                        <td>@(number.IsOwner ? "Да" : "Нет")</td>
-                        <td><button type="button" style="color:red" onclick="independ('@number.Number', '@phoneNumber')">Отвязать</button></td>
+                        <td><b>Номер Машины</b></td>
+                        <td><b>Дата добавления</b></td>
+                        <td><b>Является владельцем</b></td>
                     </tr>
-                }
-            }
-        </tbody>
-    </table>
-}
-else
-{
-    <h4>@failReason</h4>
-}
+                </thead>
+                <tbody>
+                    @if (numbers != null && numbers.Any())
+                    {
+                        foreach (var number in numbers)
+                        {
+                            <tr>
+                                <td>@number.Number</td>
+                                <td>@number.CreationDate.ToString("dd.MM.yyyy")</td>
+                                <td>@(number.IsOwner ? "Да" : "Нет")</td>
+                                <td><button class="unbind-btn" type="button" onclick="independ('@number.Number', '@phoneNumber')">Отвязать</button></td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <h4>@failReason</h4>
+    }
+</div>
